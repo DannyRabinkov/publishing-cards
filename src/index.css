@@ -1,0 +1,19 @@
+body {
+    background-color: cadetblue;
+}
+
+.footer {
+    margin-top: 15px;
+    padding: 1rem;
+    background-color: rgb(201, 170, 69);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+div.logOutBtn {
+    position: fixed;
+    right: 5px;
+    top: 5px;
+}
