@@ -2,7 +2,7 @@ import HomePage from "../pages/HomePage";
 import AboutPage from "../pages/AboutPage";
 import SignInPage from "../pages/SignInPage";
 import BusinessRegistrationPage from "../pages/BusinessRegistrationPage";
-import SimpleRegistrationPage from "../pages/SimpleRegistrationPage";
+import SimpleRegistrationPage from "../pages/SimpleRegistrationPage.jsx";
 import MyCardsPage from "../pages/MyCardsPage";
 import { GoHome } from "react-icons/go";
 import { FcAbout } from "react-icons/fc";
