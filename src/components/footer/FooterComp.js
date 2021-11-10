@@ -8,9 +8,11 @@ import React from "react";
 const FooterComp = () => (
   <div className="footer">
     <Nav className="justify-content-center" activeKey="/home">
-      <Nav.Item>All rights reserved to Daniel Rabinkov &copy;</Nav.Item>
+      <Nav.Item style={{ color: "white" }}>
+        All rights reserved to Daniel Rabinkov &copy;
+      </Nav.Item>
     </Nav>
-    <p className="text-center mt-4 mb-4">
+    <p className="text-center mt-4 mb-4" style={{ color: "white" }}>
       Some great minds gave some advices <FaRegGrinWink></FaRegGrinWink>
     </p>
     <Nav className="justify-content-end" activeKey="/home">
