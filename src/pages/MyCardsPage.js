@@ -1,39 +1,56 @@
 import { Container, Button } from "react-bootstrap";
 import React from "react";
 import CreateCardComp from "../components/my-cards/CreateCardComp.js";
-import CardComp from "../components/my-cards/CardComp.js";
-import { useState } from "react";
 import { BsCreditCard2FrontFill } from "react-icons/bs";
-function MyCardsPage() {
-  const [isAddMode, setAddMode] = useState(false);
+import { creatNewCard } from "../helpers/FetchHelper.js";
+import { toast } from "react-toastify";
+import CardsCont from "../components/my-cards/CardsCont.jsx";
 
-  return (
-    <Container className="card-container">
-      <h1 style={{ fontFamily: "ariel", fontSize: "2rem", padding: "20px" }}>
-        {" "}
-        My Cards! <BsCreditCard2FrontFill></BsCreditCard2FrontFill>
-      </h1>
-      <Button
-        className="primary-button btn btn-success"
-        onClick={() => {
-          setAddMode(true);
-        }}
-      >
-        Create new card
-      </Button>
-      <Container className="p-0">
-        {!isAddMode && <CardComp></CardComp>}
-        {isAddMode && (
-          <CreateCardComp clickHandler={insertCard}></CreateCardComp>
-        )}
-      </Container>
-    </Container>
-  );
+export default class MyCardsPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isAddMode: false,
+    };
+    this.insertCard = this.insertCard.bind(this);
+  }
 
-  function insertCard(data) {
-    var insertNewCard = insertCard(data, localStorage.getItem("token"), () => {
-      setAddMode(false);
+  insertCard = (data) => {
+    creatNewCard(data, (data) => {
+      if (data._id) {
+        toast("Card Created Successfully", {
+          onClose: () => {
+            !this.state.isAddMode && <CardsCont />;
+          },
+        });
+      } else {
+        toast("Eror card was not created");
+      }
     });
+  };
+
+  render() {
+    return (
+      <Container className="card-container">
+        <h1>
+          {" "}
+          My Cards! <BsCreditCard2FrontFill />
+        </h1>
+        <Button
+          className="primary-button btn btn-success"
+          onClick={() => {
+            this.setState({ isAddMode: true });
+          }}
+        >
+          Create new card
+        </Button>
+        <Container className="p-0">
+          {!this.state.isAddMode && <CardsCont />}
+          {this.state.isAddMode && (
+            <CreateCardComp clickHandler={this.insertCard} />
+          )}
+        </Container>
+      </Container>
+    );
   }
 }
-export default MyCardsPage;

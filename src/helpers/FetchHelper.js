@@ -11,8 +11,25 @@ export function registerNewAccount(data, callback) {
 }
 export function creatNewCard(data, callback) {
   let url = baseUrl + "/api/cards";
-  let obj = getConfigurationForPostRequest(data);
+  let obj = prepareRequest(data);
 
+  fetch(url, obj)
+    .then((response) => response.json())
+    .then((response) => callback(response))
+    .catch((error) => callback(error));
+}
+export function deleteCard(data, callback) {
+  let url = baseUrl + "/api/cards/" + data;
+  let obj = prepareDeleteRequest();
+
+  fetch(url, obj)
+    .then((response) => response.json())
+    .then((response) => callback(response))
+    .catch((error) => callback(error));
+}
+export function getUserCard(callback) {
+  let url = baseUrl + "/api/cards/all";
+  let obj = EmptyGETRequest();
   fetch(url, obj)
     .then((response) => response.json())
     .then((response) => callback(response))
@@ -45,5 +62,42 @@ function getConfigurationForPostRequest(data) {
     },
     method: "POST",
     body: JSON.stringify(data),
+  };
+}
+
+function prepareRequest(data) {
+  let token = localStorage.getItem("token");
+  return {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "x-auth-token": token,
+    },
+    method: "POST",
+    body: JSON.stringify(data),
+  };
+}
+
+function prepareDeleteRequest() {
+  let token = localStorage.getItem("token");
+  return {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "x-auth-token": token,
+    },
+    method: "DELETE",
+  };
+}
+
+function EmptyGETRequest() {
+  let token = localStorage.getItem("token");
+  return {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      "x-auth-token": token,
+    },
+    method: "GET",
   };
 }
