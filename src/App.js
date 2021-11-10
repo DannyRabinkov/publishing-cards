@@ -17,11 +17,13 @@ function App() {
   return (
     <div className="App">
       <>
-        {user && user.email}
         <SinglePageAppComp set={set} user={user}></SinglePageAppComp>
         <ToastContainer></ToastContainer>
         <LogOutComp></LogOutComp>
         <FooterComp></FooterComp>
+        <div id="email" hidden>
+          {user && user.email}
+        </div>
       </>
     </div>
   );
