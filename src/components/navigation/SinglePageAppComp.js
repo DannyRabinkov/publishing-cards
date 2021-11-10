@@ -1,13 +1,16 @@
 import NavigationRouteComp from "./NavigationRouteComp";
 import NavigationBarComp from "./NavigationBarComp";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
 function SinglePageAppComp({ set, user }) {
   return (
-    <Router>
+    <BrowserRouter>
       {" "}
       <NavigationBarComp user={user}></NavigationBarComp>
       <NavigationRouteComp set={set}></NavigationRouteComp>
-    </Router>
+      <Route>
+        <Redirect to="/Home" />
+      </Route>
+    </BrowserRouter>
   );
 }
 export default SinglePageAppComp;
