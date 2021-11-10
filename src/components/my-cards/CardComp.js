@@ -1,28 +1,50 @@
 import { Card, Button } from "react-bootstrap";
+import React from "react";
+import { deleteCard } from "../../helpers/FetchHelper";
 
-function CardComp({ card, clickHandler }) {
-  return (
-    (card && (
-      <Card>
-        <Card.Img variant="top" style={{ width: 60 }} src={card.bizImage} />
-        <Card.Body>
-          <Card.Title>{card.bizName}</Card.Title>
-          <Card.Text>{card.bizDescription}</Card.Text>
-          <Card.Text>{card.bizAddress}</Card.Text>
-          <Card.Text>{card.bizPhone}</Card.Text>
-          <Button
-            variant="primary"
-            onClick={(e) => {
-              e.preventDefault();
-              clickHandler(card._id);
-            }}
-          >
-            Remove this card
-          </Button>
-        </Card.Body>
-      </Card>
-    )) || <></>
-  );
+export default class CardComp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      deleted: false,
+    };
+  }
+
+  deleteCardEvent = (id) => {
+    deleteCard(id, () =>
+      this.setState({
+        deleted: true,
+      })
+    );
+  };
+
+  render() {
+    if (this.state.deleted) return <React.Fragment />;
+    else
+      return (
+        <div className="container">
+          <Card className="Card">
+            <Card.Img
+              variant="top"
+              style={{
+                width: "16rem",
+              }}
+              src={this.props.card.bizImage}
+            />{" "}
+            <Card.Body>
+              <Card.Title> {this.props.card.bizName} </Card.Title>{" "}
+              <Card.Text> {this.props.card.bizDescription} </Card.Text>{" "}
+              <Card.Text> {this.props.card.bizAddress} </Card.Text>{" "}
+              <Card.Text> {this.props.card.bizPhone} </Card.Text>{" "}
+              <Button
+                variant="primary"
+                onClick={() => this.deleteCardEvent(this.props.card._id)}
+              >
+                Remove this card{" "}
+              </Button>{" "}
+            </Card.Body>{" "}
+          </Card>
+        </div>
+      );
+  }
 }
-
-export default CardComp;
