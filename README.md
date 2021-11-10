@@ -1,2 +1,2 @@
-# first-react
- my first react proj
+# Publishing Cards Platform
+Website for publishing cards for business owners and regular users.
