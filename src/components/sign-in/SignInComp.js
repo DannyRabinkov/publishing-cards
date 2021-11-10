@@ -1,7 +1,7 @@
 import validateSignIn from "../../helpers/signInHelper";
 import { Form, Button } from "react-bootstrap";
 import { toast } from "react-toastify";
-import { Redirect } from "react-router";
+
 function SignInComp({ clickHandler = (f) => f }) {
   return (
     <Form>
