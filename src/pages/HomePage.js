@@ -4,11 +4,21 @@ function HomePage() {
   return (
     <>
       <Container>
-        <h1 style={{ fontFamily: "ariel", fontSize: "2rem", padding: "20px" }}>
+        <h1>
           {" "}
           React <AiOutlineFieldNumber></AiOutlineFieldNumber> 1
         </h1>
-        <p className="aboutPara" style={{ fontFamily: "ariel" }}>
+        <p
+          className="aboutPara"
+          style={{
+            fontFamily: "ariel",
+            boxShadow:
+              "rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset",
+            marginTop: "4rem",
+            padding: "3rem",
+            backgroundColor: "darkgray",
+          }}
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
           varius sapien vitae lorem vulputate sagittis. Sed eget auctor elit,
           nec maximus orci. Fusce et turpis pretium, mattis ligula sit amet,
